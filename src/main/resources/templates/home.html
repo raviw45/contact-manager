@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+
+<body>
+	<section class="banner">
+		<div class="container text-center" style="width: 45%;">
+			<h1 class="text-capitalize" style="font-family:monospace;font-weight: bold;">Add Contacts To The Cloud</h1>
+			<p style="font-size: 15px;font-family: serif;">Save your important contacts to the cloud. And only you are
+				able to access your
+				contacts from the cloud.
+			</p>
+			<a class="start-btn btn btn-success text-white" th:href="@{/login}"
+				style="border-radius: 20px; padding:5px 25px;font-family:cursive;letter-spacing: 0.5px;font-size: 20px;">Get
+				Started<i class="fa-solid fa-arrow-right ml-2"></i></a>
+		</div>
+	</section>
+</body>
+
+</html>

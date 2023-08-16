@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<section class="login">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="card mt-4 p-3" style="font-family: cursive;">
+						<div class="card-body">
+							<h1 class="text-primary text-center font-weight-bold">LogIn Here</h1>
+							<form action="">
+							<!--username field-->
+								<div class="form-group">
+									<label class="form-label" for="username">Email</label>
+									<input 
+									type="email" 
+									id="username"
+									name="username"
+									placeholder="Enter email"
+									class="form-control"
+									/>
+								</div>
+							<!--password field-->
+								<div class="form-group mb-auto">
+									<label class="form-label" for="password">Password</label>
+									<input 
+									type="password" 
+									id="password"
+									name="password"
+									placeholder="Enter password"
+									class="form-control"
+									/>
+								</div>
+								<!--forgot password link-->
+								 <a href="#" class="form-link float-right">Forgotten Password</a>
+								 <div class="form-group mt-4 text-center">
+									 <button type="submit" class="btn btn-primary" style="padding: 5px 40px ;border-radius: 20px;width:30%;">LogIn</button>
+								 </div>
+								 <hr>
+								 <div class="text-center">
+									 <span>Dont have an account ?? <a href="" th:href="@{/signup}">SignUp</a></span>
+								 </div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
