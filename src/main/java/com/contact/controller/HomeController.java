@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +32,8 @@ public class HomeController {
 
 	@Autowired
 	private UserServices userServices;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@GetMapping
 	public String home(Model m) {
@@ -44,7 +47,7 @@ public class HomeController {
 		return "about";
 	}
 
-	@GetMapping("/login")
+	@GetMapping("/signin")
 	public String signin(Model m) {
 		m.addAttribute("title", "Contact-LogIn Page");
 		return "login";
@@ -61,8 +64,9 @@ public class HomeController {
 	public String processSignup(@Valid @ModelAttribute("user") User user,BindingResult result,
 			@RequestParam("profileImage") MultipartFile getfile, HttpSession session, Model m) {
 		try {
-			user.setRole("Role_USER");
+			user.setRole("ROLE_USER");
 			user.setEnabled(true);
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			m.addAttribute("title","Processing Registration..");
 			if (result.hasErrors()) {
 				m.addAttribute("user", user);

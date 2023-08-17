@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="users")
@@ -32,7 +31,6 @@ public class User {
 	
 	@Column(nullable=false,unique=true)
 	@NotBlank(message="Password must required!!!")
-	@Size(max=8,message="Password must be within 8 characters!!!!")
 	private String password;
 	private String uImageUrl;
 	private String about;
