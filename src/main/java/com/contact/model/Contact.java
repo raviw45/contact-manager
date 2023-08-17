@@ -1,7 +1,17 @@
 package com.contact.model;
 
-public class Contact {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="contacts")
+public class Contact {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long cid;
 	private String cname;
 	private String nickName;
@@ -10,6 +20,7 @@ public class Contact {
 	private String cImageUrl;
 	private String description;
 	private String phone;
+	@ManyToOne
 	private User user;
 	public long getCid() {
 		return cid;

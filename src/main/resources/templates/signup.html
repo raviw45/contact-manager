@@ -11,101 +11,97 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
-					<div class="card mt-3 p-2"
-						style="font-family: cursive;"
-						>
-						
+					<div class="card mt-3 p-2" style="font-family: cursive;">
+
 						<div class="card-body">
-							  <div class="">
-							      <img src="" class="" th:src="@{/img/login.png}"
-								        style="width: 45px; height: 45px;position:absolute;" alt="" />
-							      <h1 class="text-center text-primary">Register Here</h1>
-						       </div>
-                             <form>
-								 
-								 <!--username field-->
-								 <div class="form-group">
-									 <div class="input-group">
-										 <div class="input-group-prepend">
-											 <span class="input-group-text">
-												 <i class="fa-regular fa-user"></i></span>
-										 </div>
-										 <input 
-										 type="text" 
-										 class="form-control"
-										 id="username"
-										 name="uname"
-										 placeholder="Enter your name"
-										 />
-									 </div>
-								 </div>
-								 
-								 <!--email field-->
-								 <div class="form-group">
-									 <div class="input-group">
-										 <div class="input-group-prepend">
-											 <span class="input-group-text">
-												 <i class="fa-regular fa-envelope"></i>
-											 </span>
-										 </div>
-										 <input 
-										 type="email" 
-										 class="form-control"
-										 id="email"
-										 name="uemail"
-										 placeholder="Enter your email"
-										 />
-									 </div>
-								 </div>
-								 
-								 <!--password field-->
-								 <div class="form-group">
-									 <div class="input-group">
-										 <div class="input-group-prepend">
-											 <span class="input-group-text">
-												 <i class="fa-solid fa-key"></i>
-											 </span>
-										 </div>
-										 <input 
-										 type="password" 
-										 class="form-control"
-										 id="password"
-										 name="password"
-										 placeholder="Enter password"
-										 />
-									 </div>
-								 </div>
-								 
-								 <!--about user field-->
-								 <div class="form-group">
-									 <textarea 
-									 name="about" 
-									 id="about" 
-									 class="form-control" 
-									 rows="5"
-									 placeholder="Enter about you"></textarea>
-								 </div>
-								 
-								 <!--choose image field-->
-								 <div class="form-group">
-									 <input
-									 type="file"
-                                     name="profile"
-                                     id="profile" 
-									 />
-								 </div>
-								 
-								 <!--buttons-->
-								 <div class="form-group text-center">
-									 <button type="submit" class="btn btn-primary mr-4" 
-									 style="padding: 5px 35px;border-radius: 20px;">SignUp</button>
-									 <button type="reset" class="btn btn-warning"
-									  style="padding: 5px 35px;border-radius: 20px;">Reset</button>
-								 </div>
-								 <div class="text-center">									 
-								    <span>Already have an account ? <a href="" th:href="@{/login}">SignIn</a></span>
-								 </div>
-							 </form>
+							<div class="">
+								<div th:if="${session.message}" th:classappend="${session.message.type}"
+									class="alert text-center" role="alert">
+									<span th:text="${session.message.content}"></span>
+									<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+								</div>
+								<img src="" class="" th:src="@{/img/login.png}"
+									style="width: 45px; height: 45px;position:absolute;" alt="" />
+								<h1 class="text-center text-primary">Register Here</h1>
+							</div>
+							<form th:action="@{/process_signup}" method="post" enctype="multipart/form-data"
+								th:object="${user}">
+
+								<!--username field-->
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">
+												<i class="fa-regular fa-user"></i></span>
+										</div>
+										<input type="text" class="form-control" name="uname"
+											placeholder="Enter your name" th:value="${user.uname}"
+											th:classappend="${#fields.hasErrors('uname')}?'is-invalid':''" />
+										<div th:each="e:${#fields.errors('uname')}" th:text="${e}"
+											class="invalid-feedback">
+											
+										</div>
+									</div>
+								</div>
+
+								<!--email field-->
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">
+												<i class="fa-regular fa-envelope"></i>
+											</span>
+										</div>
+										<input type="email" class="form-control" id="email" name="uemail"
+											placeholder="Enter your email" th:value="${user.uemail}"
+											th:classappend="${#fields.hasErrors('uemail')} ? 'is-invalid':'' " />
+										<div th:each="e:${#fields.errors('uemail')}" th:text="${e}"
+											class="invalid-feedback">
+											
+										</div>
+									</div>
+								</div>
+
+								<!--password field-->
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">
+												<i class="fa-solid fa-key"></i>
+											</span>
+										</div>
+										<input type="password" class="form-control" id="password" name="password"
+											placeholder="Enter password" th:value="${user.password}"
+											th:classappend="${#fields.hasErrors()} ? 'is-invalid':''" />
+											<div th:each="e:${#fields.errors('password')}" th:text="${e}"
+											class="invalid-feedback">
+											
+										</div>
+									</div>
+								</div>
+
+								<!--about user field-->
+								<div class="form-group">
+									<textarea name="about" id="about" class="form-control" rows="5"
+										placeholder="Enter about you"></textarea>
+								</div>
+
+								<!--choose image field-->
+								<div class="form-group">
+									<input type="file" name="profileImage" />
+								</div>
+
+								<!--buttons-->
+								<div class="form-group text-center">
+									<button type="submit" class="btn btn-primary mr-4"
+										style="padding: 5px 35px;border-radius: 20px;">SignUp</button>
+									<button type="reset" class="btn btn-warning"
+										style="padding: 5px 35px;border-radius: 20px;">Reset</button>
+								</div>
+								<div class="text-center">
+									<span>Already have an account ? <a href="" th:href="@{/login}">SignIn</a></span>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
