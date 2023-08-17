@@ -1,12 +1,52 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www/thymeleaf.org" th:replace="normal/userbase::layout(~{::section})">
+
 <head>
 	<meta charset="UTF-8" />
 	<title>Document</title>
 </head>
+
 <body>
 	<section>
-		<h1>this is user dashboard</h1>
+		<div class="container w-40">
+			<div class="card">
+				<div class="card-header">
+					<h1 class="text-center text-info" style="font-family: cursive;">User Profile</h1>
+				</div>
+				<div class="card-body text-center">
+					<img th:src="@{'/img/'+${user.uImageUrl}}" style="width: 115px; height: 115px;" alt="" />
+					<h3 class="mt-3"><span th:text="${user.uname}"></span></h3>
+                    <div class="row">
+						<div class="col-md-6 offset-md-3">
+							<table class="table table-borderless mt-3">
+						<thead>
+							<tr>
+								<th scope="col" class="text-right">ID&nbsp;:</th>
+								<th scope="col" th:text="${user.uid}" class="text-left"></th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row" class="text-right">Email&nbsp;:</th>
+								<th scope="row" class="text-left" th:text="${user.uemail}"></th>
+							</tr>
+							<tr>
+								<th scope="col" class="text-right">About&nbsp;:</th>
+								<th scope="col" th:text="${user.about}" class="text-left"></th>
+							</tr>
+							<tr>
+								<th scope="col" class="text-right">ROLE&nbsp;:</th>
+								<th scope="col" th:text="${user.role}" class="text-left"></th>
+							</tr>
+						</tbody>
+					</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 </body>
+
 </html>

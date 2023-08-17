@@ -20,9 +20,9 @@
 									<span th:text="${session.message.content}"></span>
 									<th:block th:text="${#session.removeAttribute('message')}"></th:block>
 								</div>
-								<img src="" class="" th:src="@{/img/login.png}"
-									style="width: 45px; height: 45px;position:absolute;" alt="" />
-								<h1 class="text-center text-primary">Register Here</h1>
+								<img src="" class="img" th:src="@{/img/login.png}"
+								 alt="" />
+								<h1 class="header text-center text-primary">Register Here</h1>
 							</div>
 							<form th:action="@{/process_signup}" method="post" enctype="multipart/form-data"
 								th:object="${user}">

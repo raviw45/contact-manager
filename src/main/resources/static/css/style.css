@@ -15,4 +15,27 @@ nav{
 	align-items: center;
 	height: 89.2vh;
 	background: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("../img/call.jpg");	background-attachment: fixed;	background-repeat: no-repeat;	background-position: center;	background-size: cover;	color:#fff;
-}.start-btn:hover{	font-weight: bold;}.login{	background-color: #e2e2e2;	height: 100vh;}.login .card{	box-sizing: border-box;	box-shadow: 4px 4px 4px 4px #8888;	border-radius: 15px;}
+}.start-btn:hover{	font-weight: bold;}.login{	background-color: #e2e2e2;	height: 100vh;}.navbar-brand{
+	font-size: 29px;
+	font-family: cursive;
+	text-transform: capitalize;
+}.login .card{	box-sizing: border-box;	box-shadow: 4px 4px 4px 4px #8888;	border-radius: 15px;}
+.img{
+	width: 45px; 
+	height: 45px;
+	position:absolute;
+}
+@media only screen and (max-width:450px){
+	.img{
+		width:35px;
+		height:35px;
+		left: 2;
+	}
+	.navbar-brand{
+		font-size: 20px!important;
+	}
+	.header{
+		font-size:30px!important;
+	}
+	
+}
