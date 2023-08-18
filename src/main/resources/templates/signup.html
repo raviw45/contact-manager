@@ -72,7 +72,7 @@
 										</div>
 										<input type="password" class="form-control" id="password" name="password"
 											placeholder="Enter password" th:value="${user.password}"
-											th:classappend="${#fields.hasErrors()} ? 'is-invalid':''" />
+											th:classappend="${#fields.hasErrors('password')} ? 'is-invalid':''" />
 											<div th:each="e:${#fields.errors('password')}" th:text="${e}"
 											class="invalid-feedback">
 											

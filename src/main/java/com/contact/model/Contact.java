@@ -1,11 +1,15 @@
 package com.contact.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="contacts")
@@ -13,12 +17,19 @@ public class Contact {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long cid;
+    @NotBlank(message="Name must be required!!!!!")
 	private String cname;
 	private String nickName;
+	@NotBlank(message="Work must be required!!!")
 	private String work;
+	@Pattern(regexp ="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$",message="Invalid Email!!")
+	@Column(nullable = false,unique = true)
 	private String cemail;
 	private String cImageUrl;
 	private String description;
+	@NotBlank(message="Phone number must be required!!!!")
+	@Size(min=10,max=10,message="Phone number must be of 10 digit number!!!")
+	@Column(nullable=false,unique=true)
 	private String phone;
 	@ManyToOne
 	private User user;
@@ -81,6 +92,11 @@ public class Contact {
 		return "Contact [cid=" + cid + ", cname=" + cname + ", nickName=" + nickName + ", work=" + work + ", cemail="
 				+ cemail + ", cImageUrl=" + cImageUrl + ", description=" + description + ", phone=" + phone + ", user="
 				+ user + "]";
+	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return this.cid==((Contact)obj).getCid();
 	}
 	
 }

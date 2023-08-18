@@ -36,7 +36,7 @@ public class User {
 	private String about;
 	private String role;
 	private boolean isEnabled;
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Contact> contacts;
 	
 	public List<Contact> getContacts() {
@@ -93,11 +93,11 @@ public class User {
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
-	@Override
-	public String toString() {
-		return "User [uid=" + uid + ", uname=" + uname + ", uemail=" + uemail + ", password=" + password
-				+ ", uImageUrl=" + uImageUrl + ", about=" + about + ", role=" + role + ", isEnabled=" + isEnabled
-				+ ", contacts=" + contacts + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "User [uid=" + uid + ", uname=" + uname + ", uemail=" + uemail + ", password=" + password
+//				+ ", uImageUrl=" + uImageUrl + ", about=" + about + ", role=" + role + ", isEnabled=" + isEnabled
+//				+ ", contacts=" + contacts + "]";
+//	}
 	
 }

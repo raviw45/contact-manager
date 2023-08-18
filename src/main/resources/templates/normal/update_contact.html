@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/userbase::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="card">
+				<div class="row">
+					<div class="col-md-6 offset-md-3">
+						<div class="card-body">
+							<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert">
+								<span th:text="${session.message.content}"></span>
+								<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+							</div>
+							<h3 class="text-center text-warning font-weight-bold"
+								style="font-family: Georgia, 'Times New Roman', Times, serif;font-size: 45px;">Updae
+								Contacts</h3>
+								<form th:action="@{/user/process_update}" method="post" enctype="multipart/form-data" th:object="${contact}">
+									<input type="hidden" name="cid" th:value="${contact.cid}"/>
+									<!--contact holder name field-->
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text">@</span>
+											</div>
+											<input 
+											 type="text"
+											 name="cname"
+											 placeholder="Enter contact holder name"
+											 class="form-control"
+											 th:value="${contact.cname}"
+											th:classappend="${#fields.hasErrors('cname')} ? 'is-invalid':'' "
+											/>
+											<div th:each="e:${#fields.errors('cname')}" th:text="${e}" class="invalid-feedback">
+											
+										    </div>
+										</div>
+									</div>
+									<!--contact holder second name field-->
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text">@</span>
+											</div>
+											<input 
+											 type="text"
+											 name="nickName"
+											 placeholder="Enter nick name"
+											 class="form-control"
+											 th:value="${contact.nickName}"
+											/>
+										</div>
+									</div>
+									<!--contact holder work field-->
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text">@</span>
+											</div>
+											<input 
+											 type="text"
+											 name="work"
+											 placeholder="Enter work or designation"
+											 class="form-control"
+											 th:value="${contact.work}"
+											 th:classappend="${#fields.hasErrors('work')}?'is-invalid':''"
+											/>
+											<div th:each="e:${#fields.errors('work')}" th:text="${e}" class="invalid-feedback">
+												
+											</div>
+										</div>
+									</div>
+									<!--contact holder email address field-->
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text">@</span>
+											</div>
+											<input 
+											 type="text"
+											 name="cemail"
+											 placeholder="Enter email address"
+											 class="form-control"
+											 th:value="${contact.cemail}"
+											 th:classappend="${#fields.hasErrors('cemail')}?'is-invalid':''"
+											/>
+											<div th:each="e:${#fields.errors('cemail')}" th:text="${e}" class="invalid-feedback">
+												
+											</div>
+										</div>
+									</div>
+									<!--contact holder email address field-->
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text">@</span>
+											</div>
+											<input 
+											 type="number"
+											 name="phone"
+											 placeholder="Enter phone number"
+											 class="form-control"
+											 th:value="${contact.phone}"
+											 th:classappend="${#fields.hasErrors('phone')}?'is-invalid':''"
+											/>
+											<div th:each="e:${#fields.errors('phone')}" th:text="${e}" class="invalid-feedback">
+												
+											</div>
+										</div>
+									</div>
+									
+									<!--Contact Imager url-->
+									<div class="container text-center">
+										<img src="" alt="" style="width: 115px;height:115px;border-radius: 50%;" th:src="@{'/img/'+${contact.cImageUrl}}" />
+									</div>
+									<div class="form-group">
+										<input 
+										type="file"
+										name="contactProfile"
+										/>
+									</div>
+									
+									<!--contact description page-->
+								   <div class="form-group">
+									<textarea name="description" class="form-control" rows="5"
+										placeholder="Enter description" th:text="${contact.description}"></textarea>
+								   </div>
+								   
+								   <!--buttons-->
+								   <div class="form-group text-center">
+									   <button class="btn btn-warning mr-3" style="padding: 5px 15px;border-radius: 20px;">Update Contact</button>
+								   </div>
+								</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
