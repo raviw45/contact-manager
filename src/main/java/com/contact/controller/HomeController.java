@@ -57,7 +57,7 @@ public class HomeController {
 	public String signUp(Model m) {
 		m.addAttribute("title", "Contact-SignUp Page");
 		m.addAttribute("user",new User());
-		return "signUp";
+		return "signup";
 	}
 
 	@PostMapping("/process_signup")
